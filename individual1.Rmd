@@ -1,0 +1,22 @@
+---
+title: "individual1"
+author: "Connor Toliver; @connortoliver"
+date: "2/19/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r cars}
+dat <- readxl::read_xls('GSS.xls')
+names(dat) <- c('year', 'happiness', 'party', 'sex', 'divorced', 'marital', 'self-emp', 'workstat', 'id', 'ballot')
+
+
+```
+
+#1. Compare happiness of divorced married people vs divorced non-married people
+#2. Compare happiness of self-employed by sex
+#3. Compare male and female divorce rate by political party
+#4. Compare happiness of work status (workstat)
