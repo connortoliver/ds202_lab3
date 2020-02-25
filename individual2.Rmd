@@ -1,0 +1,71 @@
+---
+title: "individual2"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+dat <- readxl::read_xls('GSS.xls')
+```
+#3
+```{r}
+library(ggplot2)
+```
+
+
+
+```{r}
+dat$`General_happiness` <- dat$`General happiness`
+dat$political <- dat$`Political party affiliation`
+```
+
+```{r}
+ggplot(dat, aes(x = General_happiness)) + 
+  geom_bar(aes(fill=factor(political))) + coord_flip()
+```
+From this plot we can see that the political parties are about even in all the different levels of General_happiness but it also could depend on how many there are in each political. We can see there are very few for "Other party" so that explains why there aren't many of those for the different levels of General_happiness.
+
+Compare male and female divorce rate by political party.
+```{r}
+dat$sex <- dat$`Respondents sex`
+dat$divorced <- dat$`Ever been divorced or separated`
+```
+
+```{r}
+ggplot(dat, aes(x = divorced)) + 
+  geom_bar(aes(fill=factor(sex))) + facet_wrap(~political) + coord_flip()
+```
+From these plots we can see that most people are either not divorced or it doesn't apply to them. It doesn't seem to be very different among sex and political party aside from the count for the political parties.
+
+Compare happiness and work status.
+```{r}
+dat$workstat <- dat$`Labor force status`
+```
+
+```{r}
+ggplot(dat, aes(x = General_happiness)) + 
+  geom_bar(aes(fill=factor(workstat))) + coord_flip()
+```
+People working full time make up most of the data and are also fairly happy for the most part as are most other factors of workstat compared to their counts.
